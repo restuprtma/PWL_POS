@@ -121,7 +121,7 @@ class LevelController extends Controller
     public function update(Request $request, string $id) {
 
         $request->validate([
-            'level_kode'    => 'required|max:3|unique:m_level,level_kode',
+            'level_kode'    => 'required|min:3|unique:m_level,level_kode',
             'level_nama'    => 'required|string'
         ]);
 
