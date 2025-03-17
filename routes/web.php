@@ -34,7 +34,9 @@ Route::group(['prefix' => 'user'], function () {
     Route::put('/{id}', [UserController::class, 'update']);       // menyimpan perubahan data user
     Route::get('/{id}/edit_ajax', [UserController::class, 'edit_ajax']);
     Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax']);
-    Route::delete('/{id}', [UserController::class, 'destroy']);   // menghapus data user
+    Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax']);
+    Route::delete('/{id}/delete_ajax', [UserController::class, 'delete_ajax']);   
+    Route::delete('/{id}', [UserController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'level'], function () {
@@ -94,4 +96,3 @@ Route::group(['prefix' => 'barang'], function () {
 // Route::get('/user/ubah/{id}', [UserController::class, 'ubah']);
 // Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan'])->name('user.ubah_simpan');
 // Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
-// Route::get('/', [WelcomeController::class, 'index']);
