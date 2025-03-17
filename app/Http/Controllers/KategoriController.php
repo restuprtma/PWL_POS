@@ -11,7 +11,7 @@ use function Laravel\Prompts\table;
 
 class KategoriController extends Controller
 {
-     public function index() {
+    public function index() {
         $kategori = KategoriModel::all();
 
         $breadcrumb = (object) [
@@ -133,7 +133,7 @@ class KategoriController extends Controller
         ]);
 
         return redirect('/kategori')->with('succes', 'Data kategori berhasil diubah');
-    }
+    }    
 
     public function destroy(string $id)
     {
