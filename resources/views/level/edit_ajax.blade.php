@@ -52,7 +52,7 @@
         $('#form-edit').validate({
             rules: {
                 level_kode: {required: true, maxlength: 10, pattern: /^[A-Z]+$/},
-                level_nama: {required: true, minlength: 3, maxlength: 100, pattern: /^[a-zA-Z]+$/}
+                level_nama: {required: true, minlength: 3, maxlength: 100, pattern: /^[a-zA-Z\s.,'-/]+$/}
             },
             submitHandler: function(form) {
                 $.ajax({
