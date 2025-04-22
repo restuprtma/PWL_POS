@@ -293,7 +293,7 @@ class BarangController extends Controller
         try {
             if ($request->ajax() || $request->wantsJson()) {
                 $rules = [
-                    'f' => ['required', 'mimes:xlsx', 'max:1024']
+                    'file_barang' => ['required', 'mimes:xlsx', 'max:1024']
                 ];
 
                 $validator = Validator::make($request->all(), $rules);
@@ -305,18 +305,18 @@ class BarangController extends Controller
                     ]);
                 }
 
-                $file = $request->file('f');
+                $file = $request->file('file_barang');
 
                 $reader = IOFactory::createReader('Xlsx');
                 $reader->setReadDataOnly(true);
-                $spreadsheet = $reader->load($file); // pakai langsung, bukan getRealPath
+                $spreadsheet = $reader->load($file->getRealPath()); // pakai langsung, bukan getRealPath
                 $sheet = $spreadsheet->getActiveSheet();
                 $data = $sheet->toArray(null, false, true, true);
 
                 $insert = [];
                 if (count($data) > 1) {
                     foreach ($data as $baris => $value) {
-                        if ($baris > 1 && !empty($value['A']) && !empty($value['B']) && !empty($value['C'])) {
+                        if ($baris > 1 ) {
                             $insert[] = [
                                 'kategori_id' => $value['A'],
                                 'barang_kode' => $value['B'],
@@ -345,7 +345,7 @@ class BarangController extends Controller
                 }
             }
 
-            return redirect('/barang');
+            return redirect('/');
         } catch (\Exception $e) {
             return response()->json([
                 'status' => false,
